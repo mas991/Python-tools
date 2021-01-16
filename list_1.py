@@ -8,10 +8,9 @@ def count_numbers_in_array(a: list) -> list:
     Example:
     [0, 1, 3, 0, 2, 2, 0] -> [3, 1, 2, 1]
     """
-    a.sort()
-    b = [0 for _ in range(a[-1]+1)]
+    b = [0] * (max(a)+1)
 
-    for i in range(len(a)):
-        b[a[i]] += 1
+    for i in a:
+        b[i] += 1
 
     return b
