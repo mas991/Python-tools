@@ -63,3 +63,31 @@ for k, g in gr:
     # C: ['C', 'C']
     # B: ['B', 'B']
     # A: ['A']
+
+# 要素の切り出し
+l = list(itertools.islice('ABCDEFG', 2))
+print(l)  # A, B
+l = list(itertools.islice('ABCDEFG', 2, 4))
+print(l)  # C, D
+l = list(itertools.islice('ABCDEFG', 2, None))
+print(l)  # C, D, E, F, G
+l = list(itertools.islice('ABCDEFG', 0, None, 2))
+print(l)  # A, C, E, G
+
+
+# 順列列挙(第２引数で要素数指定)
+l = list(itertools.permutations(range(3)))
+print(l)  # [(0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0)]
+l = list(itertools.permutations(range(3), 2))
+print(l)  # [(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)]
+l = list(itertools.permutations('ABB'))
+print(l)  # [('A', 'B', 'B'), ('A', 'B', 'B'), ('B', 'A', 'B'), ('B', 'B', 'A'), ('B', 'A', 'B'), ('B', 'B', 'A')]
+# 重複削除
+x = list(k for k, g in itertools.groupby('ABB'))
+l = list(itertools.permutations(x))
+print(l)  # [('A', 'B'), ('B', 'A')]
+
+
+# 積和
+print(list(itertools.product('ABCD', 'xy')))
+print(list(itertools.product(range(2), repeat=3)))
