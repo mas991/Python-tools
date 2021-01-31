@@ -17,3 +17,16 @@ for i in itertools.cycle(l):
         break
     print(i)
     cnt += 1
+
+# 渡した配列の中で条件が真の間はスキップ、そのあとはすべての要素をコピー
+l1 = [1, 2, 4, 6, 3, 5]
+l2 = list(map(int, itertools.dropwhile(lambda x: x < 4, l1)))
+print(l2)  # 4, 6, 3, 5
+
+l1 = ['apple', 'orange', 'banana']
+l2 = list(map(str, itertools.dropwhile(lambda x: x != 'orange', l1)))
+print(l2)  # orange, banana
+
+l1 = 'abcabc'
+l2 = list(map(str, itertools.dropwhile(lambda x: x != 'c', l1)))
+print(l2)  # c, a, b, c
