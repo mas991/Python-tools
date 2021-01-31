@@ -1,6 +1,6 @@
 import itertools
 
-# カウントし続ける
+# 無限カウント
 # 引数（初期値, 間隔）小数も可
 # itertools.count(1, 2) -> 1 3 5 7 9 ...
 for i in itertools.count():
@@ -8,7 +8,7 @@ for i in itertools.count():
         break
     print(i)
 
-# 渡した配列の要素をコピー(文字列も可)
+# 引数配列の要素をコピー
 # itertools.cycle(['ABCD']) -> A B C D A B C D ...
 l = [1, 2, 3, 4]
 cnt = 0
@@ -19,7 +19,7 @@ for i in itertools.cycle(l):
     cnt += 1
 
 
-# 渡した配列の中で条件が真の間はスキップ、そのあとはすべての要素をコピー
+# 引数配列の中で条件が真の間はスキップ、そのあとはすべての要素をコピー
 l1 = [1, 2, 4, 6, 3, 5]
 l2 = list(map(int, itertools.dropwhile(lambda x: x < 4, l1)))
 print(l2)  # 4, 6, 3, 5
@@ -82,6 +82,8 @@ l = list(itertools.permutations(range(3), 2))
 print(l)  # [(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)]
 l = list(itertools.permutations('ABB'))
 print(l)  # [('A', 'B', 'B'), ('A', 'B', 'B'), ('B', 'A', 'B'), ('B', 'B', 'A'), ('B', 'A', 'B'), ('B', 'B', 'A')]
+
+
 # 重複削除
 x = list(k for k, g in itertools.groupby('ABB'))
 l = list(itertools.permutations(x))
