@@ -64,6 +64,7 @@ for k, g in gr:
     # B: ['B', 'B']
     # A: ['A']
 
+
 # 要素の切り出し
 l = list(itertools.islice('ABCDEFG', 2))
 print(l)  # A, B
@@ -92,4 +93,12 @@ print(l)  # [('A', 'B'), ('B', 'A')]
 
 # 積和
 print(list(itertools.product('ABCD', 'xy')))
+# [('A', 'x'), ('A', 'y'), ('B', 'x'), ('B', 'y'), ('C', 'x'), ('C', 'y'), ('D', 'x'), ('D', 'y')]
 print(list(itertools.product(range(2), repeat=3)))
+# [(0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1), (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1)]
+
+
+# 繰り返し
+print(list(itertools.repeat(10, 3)))  # [10, 10, 10]
+l = list(map(pow, [1, 2, 3, 4, 5], itertools.repeat(2)))
+print(l)  # [1, 4, 9, 16, 25]
