@@ -8,7 +8,7 @@ for i in itertools.count():
         break
     print(i)
 
-# 引数リテラブルの要素をコピー
+# 引数イテレータの要素をコピー
 # itertools.cycle(['ABCD']) -> A B C D A B C D ...
 l = [1, 2, 3, 4]
 cnt = 0
@@ -19,7 +19,7 @@ for i in itertools.cycle(l):
     cnt += 1
 
 
-# リテラブルの中で条件が真の間はスキップ、そのあとはすべての要素を返す
+# イテレータの中で条件が真の間はスキップ、そのあとはすべての要素を返す
 l1 = [1, 2, 4, 6, 3, 5]
 l2 = list(map(int, itertools.dropwhile(lambda x: x < 4, l1)))
 print(l2)  # 4, 6, 3, 5
@@ -32,7 +32,7 @@ l1 = 'abcabc'
 l2 = list(map(str, itertools.dropwhile(lambda x: x != 'c', l1)))
 print(l2)  # c, a, b, c
 
-# リテラブルの中で条件が真の間のみ要素を返す
+# イテレータの中で条件が真の間のみ要素を返す
 l1 = [1, 2, 4, 6, 3, 5]
 l2 = list(map(int, itertools.takewhile(lambda x: x < 4, l1)))
 print(l2)  # 1, 2
@@ -109,11 +109,19 @@ l = list(map(pow, [1, 2, 3, 4, 5], itertools.repeat(2)))
 print(l)  # [1, 4, 9, 16, 25]
 
 
-# リテラブル要素を引数として、関数を計算
+# イテレータ要素を引数として、関数を計算
 z = tuple(zip((2, 3, 10), (5, 2, 3)))
 # 引数がグループ化されている場合はstarmapを使用する
 l = list(itertools.starmap(pow, z))
 print(l)  # [32, 9, 1000]
-# グループ化されていなければmapで複数のリテラブルを渡すことができる
+# グループ化されていなければmapで複数のイテレータを渡すことができる
 l = list(map(pow, [2, 3, 10], [5, 2, 3]))
 print(l)  # [32, 9, 1000]
+
+
+# 最大要素数のイテレータに合わせてzip
+l1 = list(itertools.zip_longest('ABCD', 'xy'), fillvalue='-')
+print(l1)  # [('A', 'x'), ('B', 'y'), ('C', '-'), ('D', '-')]
+# fillvalueを設定しなければNone
+l2 = list(itertools.zip_longest('ABCD', 'xy'))
+print(l2)  # [('A', 'x'), ('B', 'y'), ('C', None), ('D', None)]
