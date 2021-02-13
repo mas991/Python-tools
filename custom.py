@@ -1,4 +1,5 @@
 import itertools
+import math
 
 
 def count_numbers_in_array(a: list) -> list:
@@ -47,3 +48,28 @@ def search_full_product(a: list) -> list:
         l.append(pr)
 
     return l
+
+
+def search_multiple_n(l: list, n: int) -> list:
+    # l[0]からl[1]の範囲でnの倍数を取得
+    # input: l = [10, 50], n = 6
+    # output = [12, 18, 24, 30, 36, 42, 48]
+    s = math.ceil(l[0] / n) * n
+    m = []
+    for i in range(s, math.ceil(l[1]), n):
+        m.append(i)
+
+    return m
+
+
+def count_multiple_n(l: list, n: int) -> int:
+    # l[0]からl[1]の範囲でnの倍数の数を取得
+    # input: l = [10, 50], n = 6
+    # output = 7
+    ans = 0
+    s = math.ceil(l[0] / n) * n
+    if s < l[1]:
+        ans += 1
+    l = sorted(l)
+    ans += (l[1] - s) // n
+    return ans
